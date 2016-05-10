@@ -135,21 +135,61 @@ my_data <- data.frame(col1, col2, col3, ...)
 
 对于字符型向量,因子的水平默认依字母顺序创建。可以通过指定levels选项来覆盖默认排序。
 
+```
+str(obj)        # 显示对象的结构
+summary(obj)    # 显示对象的统计概要
+```
 
+### 列表
 
+列表(list)是R的数据类型中最为复杂的一种。一般来说,列表就是一些对象(或成分,component)的有序集合。列表允许整合若干(可能无关的)对象到单个对象名下。
 
+可以通过在双重方括号中指明代表某个成分的数字或名称来访问列表中的元素。
 
+由于两个原因,列表成为了R中的重要数据结构。首先,列表允许以一种简单的方式组织和重新调用不相干的信息。其次,许多R函数的运行结果都是以列表的形式返回的。需要取出其中哪些成分由分析人员决定。
 
+> 对象名称中的句点(.)没有特殊意义。但美元符号($)却有着和其他语言中的句点类似的含义,即指定一个对象中的某些部分。
+> R不提供多行注释或块注释功能。
+> 将一个值赋给某个向量、矩阵、数组或列表中一个不存在的元素时,R将自动扩展这个数据结构以容纳新值。
+> R中没有标量。标量以单元素向量的形式出现。
+> R中的下标不从0开始,而从1开始。
+> 变量无法被声明。它们在首次被赋值时生成。
 
+### 数据的输入
 
+![数据的输入](static/R-import-data.png)
 
+- R中的函数edit()会自动调用一个允许手动输入数据的文本编辑器。
+- 从带分隔符的文本文件导入数据,使用read.table()从带分隔符的文本文件中导入数据。此函数可读入一个表格格式的文件并将其保存为一个数据框。
+    `read.table(file, header = logical_value, sep = "delimiter", row.names = "name")`,其中,file是一个带分隔符的ASCII文本文件,header是一个表明首行是否包含了变量名的逻辑值(TRUE或FALSE),sep用来指定分隔数据的分隔符,row.names是一个可选参数,用以指定一个或多个表示行标识符的变量。
+- 导入Excel数据
+    包中的函数read.xlsx()可将XLSX文件中的工作表导入为一个数据框。其最简单的调用格式是`read.xlsx(file, n)`,其中file是Excel 2007工作簿的所在路径,n则为要导入的工作表序号。
+- 导入XML数据
+    XML包
+- 从网页抓取数据
+    RCurl包
+- 导入SPSS数据
+    SPSS数据集可以通过foreign包中的函数read.spss()导入到R中,也可以使用`Hmisc`包中 的spss.get()函数。函数spss.get()是对read.spss()的一个封装,它可以为你自动设置后者的许多参数,让整个转换过程更加简单一致,最后得到数据分析人员所期望的结果。
+- 导入SAS数据
+- 导入Stata数据
+- 导入netCDF数据
+    ncdf包和ncdf4包
+- 导入HDF5 数据
+    HDF5(Hierarchical Data Format,分层数据格式)是一套用于管理超大型和结构极端复杂数据集的软件技术方案。
+- 访问数据库管理系统
+    R中有多种面向关系型数据库管理系统(DBMS)的接口,包括Microsoft SQL Server、Microsoft Access、MySQL、Oracle、PostgreSQL、DB2、Sybase、Teradata以及SQLite。其中一些包通过原生的数据库驱动来提供访问功能,另一些则是通过ODBC或JDBC来实现访问的。
+    install.packages("RODBC")
+    ![ODBC](static/ODBC-function.png)
+    DBI相关包
+- 通过Stat/Transfer导入数据
 
+### 数据集的标注
 
+- 变量标签
+- 值标签
 
+### 处理数据对象的实用函数
 
-
-
-
-
+![处理数据对象的实用函数](static/data-function.png)
 
 
