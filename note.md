@@ -192,4 +192,131 @@ summary(obj)    # 显示对象的统计概要
 
 ![处理数据对象的实用函数](static/data-function.png)
 
+## 第三章 图形初阶
+
+要通过代码保存图形,将绘图语句夹在开启目标图形设备的语句和关闭目标图形设备的语句之间即可。
+
+```R
+pdf("my_graph.pdd")
+    attach(mtcars)
+    plot(wt, mpg)
+    abline(lm(mpg~wt))
+    title("Regression of MPG on Weight")
+    detach(mtcars)
+dev.off()
+```
+
+可以使用函数`dev.new()`、`dev.next()`、`dev.prev()`、`dev.set()`和`dev.off()`同时打开多个图形窗口,并选择将哪个输出发送到哪个窗口中。这种方法全平台适用。关于这种方法的更多细节,请参考`help(dev.cur)`。
+
+### 图形参数
+
+(修改图形参数的)一种方法是通过函数par()来指定这些选项。其调用格式为par(optionname=value,optionname=name,...)。不加参数地执行par()将生成一个含有当前图形参数设置的列表。添加参数no.readonly=TRUE可以生成一个可以修改的当前图形参数列表。
+
+指定图形参数的第二种方法是为高级绘图函数直接提供optionname=value的键值对。这种情况下,指定的选项仅对这幅图形本身有效。
+
+#### 符号和线条
+
+![用于指定符号和线条类型的参数](static/plot-line.png)
+
+![参数pch可指定的绘图符号](static/pch-value.png )
+
+![参数lty可指定的线条类型](static/lty-value.png)
+
+#### 颜色
+
+![用于指定颜色的参数](static/color-args.png)
+
+在R中,可以通过颜色下标、颜色名称、十六进制的颜色值、RGB值或HSV值来指定颜色。
+
+函数colors()可以返回所有可用颜色的名称。[color table](http://research.stowers-institute.org/efg/R/Color/Chart/)
+
+R中也有多种用于创建连续 型颜色向量的函数,包括rainbow()、heat.colors()、terrain.colors()、topo.colors() 以及cm.colors()。
+
+多阶灰度 色可使用gray()函数生成。
+
+#### 文本属性
+
+![用于指定文本大小的参数](static/text-args.png)
+
+![用于指定字体族、字号和字样的参数](static/font-args.png)
+
+#### 图形尺寸与边界尺寸
+
+![用于控制图形尺寸和边界大小的参数](static/size-args.png)
+
+### 添加文本、自定义坐标轴和图例
+
+#### 标题
+
+使用title()函数为图形添加标题和坐标轴标签。
+
+```R
+title(main = "main title" sub = "sub-title",
+      xlab = "x-axis label", ylab = "y-axis label")
+```
+
+#### 坐标轴
+
+使用函数axis()来创建自定义的坐标轴,而非使用R中的默认坐标轴。
+
+```R
+axis(side, at = , labels = , pos = , lty = , col = , las = , tck = , ...)
+```
+
+![坐标轴选项](static/axis-args.png)
+
+创建自定义坐标轴时,应当禁用高级绘图函数自动生成的坐标轴。参数axes=FALSE将禁用全部坐标轴(包括坐标轴框架线,除非添加了参数frame.plot=TRUE)。参数xaxt="n"和yaxt="n"将分别禁用X轴或Y轴(会留下框架线,只是去除了刻度)。
+
+#### 参考线
+
+函数abline()可以用来为图形添加参考线。
+
+```R
+abline(h = yvalues, v = xvalues)
+```
+
+#### 图例
+
+当图形中包含的数据不止一组时,图例可以辨别出每个条形、扇形区域或折线各代表哪一类数据。可以使用函数legend()来添加图例。
+
+```R
+legend(location, title, legend, ...)
+```
+
+![图例选项](static/legend.png)
+
+更多细节,请参考help(legend)。
+
+#### 文本标注
+
+可以通过函数text()和mtext()将文本添加到图形上。text()可向绘图区域内部添加文本,而mtext()则向图形的四个边界之一添加文本。 
+
+```R
+text(location, "text to place", pos, ...)
+mtext("text to place", side, line = n, ...)
+```
+
+![函数text()和mtext()的选项](static/text-mtext.png)
+
+其他常用的选项有cex、col和font(分别用来调整字号、颜色和字体样式)。
+
+#### 数学标注
+
+可以使用类似于TeX中的写法为图形添加数学符号和公式。参阅help(plotmath)
+
+`demo(plotmath)`
+
+### 图形的组合
+
+在R中使用函数par()或layout()可以容易地组合多幅图形为一幅总括图形。
+
+
+
+
+
+
+
+
+
+
 

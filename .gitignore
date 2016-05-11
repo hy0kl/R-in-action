@@ -48,3 +48,7 @@ vignettes/*.pdf
 *.swo
 *.dSYM
 
+# output
+./*.pdf
+./*.png
+./*.Rout
