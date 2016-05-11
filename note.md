@@ -385,6 +385,49 @@ R提供了一些函数,用于识别包含缺失值的观测。函数is.na()允�
 
 ### 数据集的合并
 
+#### 添加列
+
+要横向合并两个数据框(数据集),请使用`merge()`函数。在多数情况下,两个数据框是通过一个或多个共有变量进行联结的(即一种内联结,inner join)。
+
+如果要直接横向合并两个矩阵或数据框,并且不需要指定一个公共索引,那么可以直接使用`cbind()`函数
+
+#### 添加行
+
+要纵向合并两个数据框(数据集),请使用`rbind()`函数
+
+`rbind(dataframeA, dataframeB) -> total`
+
+- 删除`dataframeA`中的多余变量;
+- 在`dataframeB`中的创建追加的变量并将其值设为NA(缺失).
+
+### 数据集取子集
+
+#### 选入(保留)变量
+
+数据框中的元素是通过`dataframe[row indices, column indices]`这样的记号来访问的。
+
+#### 剔除(丢弃)变量
+
+#### 选入观测
+
+函数`which()`给出了向量中值为TRUE元素的下标。
+
+#### `subset()`函数
+
+#### 随机抽样
+
+`sample()`函数能够让你从数据集中(有放回或无放回地)抽取大小为n的一个随机样本。
+
+### 使用 SQL 语句操作数据框
+
+`install.packages("sqldf")` 使用sqldf()函数 在数据框上使用SQL中的SELECT语句。
+
+https://github.com/ggrothendieck/sqldf
+
+
+
+
+
 
 
 
