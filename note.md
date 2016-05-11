@@ -11,12 +11,12 @@
 ---- | ---
 help.start() | 打开帮助文档首页
 help("foo")或?foo | 查看函数foo的帮助(引号可以省略)
-help.search("foo")或??foo | 以foo为关键词搜索本地帮助文档 
+help.search("foo")或??foo | 以foo为关键词搜索本地帮助文档
 example("foo") | 函数foo的使用示例(引号可以省略)
 RSiteSearch("foo") | 以foo为关键词搜索在线文档和邮件列表存档
 apropos("foo", mode="function") | 列出名称中含有foo的所有可用函数
 data() | 列出当前已加载包中所含的所有可用示例数据集
-vignette() | 列出当前已安装包中所有可用的vignette文档 
+vignette() | 列出当前已安装包中所有可用的vignette文档
 vignette("foo") | 为主题foo显示指定的vignette文档
 
 ### 工作空间
@@ -289,7 +289,7 @@ legend(location, title, legend, ...)
 
 #### 文本标注
 
-可以通过函数text()和mtext()将文本添加到图形上。text()可向绘图区域内部添加文本,而mtext()则向图形的四个边界之一添加文本。 
+可以通过函数text()和mtext()将文本添加到图形上。text()可向绘图区域内部添加文本,而mtext()则向图形的四个边界之一添加文本。
 
 ```R
 text(location, "text to place", pos, ...)
@@ -310,6 +310,80 @@ mtext("text to place", side, line = n, ...)
 
 在R中使用函数par()或layout()可以容易地组合多幅图形为一幅总括图形。
 
+## 第四章 基本数据管理
+
+### 创建新变量
+
+`变量名 <- 表达式` 语句中的“表达式”部分可以包含多种运算符和函数。
+
+![算术运算符](static/operator.png)
+
+`transform()`函数
+
+### 变量的重编码
+
+![逻辑运算符](static/logic-operator.png)
+
+语句`variable[condition] <- expression`将仅在`condition`的值为`TRUE`时执行赋值。
+
+### 变量的重命名
+
+```R
+fix(val_name)   # 调用一个交互式的编辑器
+
+# reshape包中有一个rename()函数
+rename(dataframe, c( oldname = "newname", oldname = "newname", ...))
+```
+
+`reshape`包未被默认安装,所以在首次使用它之前需要先使用`install.packages("reshape")`命令安装它。
+
+通过`names()`函数来重命名变量。
+
+### 缺失值
+
+在R中,缺失值以符号`NA(Not Available,不可用)`表示。不可能出现的值(例如,被0除的结果)通过符号`NaN(Not a Number,非数值)`来表示。与SAS等程序不同,R中字符型和数值型数据使用的缺失值符号是相同的。
+
+R提供了一些函数,用于识别包含缺失值的观测。函数is.na()允许你检测缺失值是否存在。
+
+#### 重编码某些值为缺失值
+
+#### 在分析中排除缺失值
+
+多数的数值函数都拥有一个`na.rm=TRUE`选项,可以在计算之前移除缺失值并使用剩余值进行计算
+
+通过函数`na.omit()`移除所有含有缺失值的观测。na.omit()可以删除所有含有缺失数据的行。
+
+删除所有含有缺失数据的观测(称为行删除,listwise deletion)是处理不完整数据集的若干手段之一。
+
+### 日期值
+
+日期值通常以字符串的形式输入到R中,然后转化为以数值形式存储的日期变量。函数`as.Date()`用于执行这种转化。其语法为`as.Date(x, "input_format")`,其中`x`是字符型数据,`input_format`则给出了用于读入日期的适当格式(见表4-4)。
+
+![日期格式](static/date-format.png)
+
+日期值的默认输入格式为`yyyy-mm-dd`。
+
+`Sys.Date()`可以返回当天的日期,而`date()` 则返回当前的日期和时间。
+
+可以使用函数`format(x, format="output_format")`来输出指定格式的日期值
+
+可以使用函数`difftime()`来计算时间间隔,并以星期、天、时、分、秒来表示。
+
+#### 将日期转换为字符型变量
+
+函数`as.character()`可将日期值转换为字符型
+
+`help(as.Date)` `help(strftime)` `help(ISOdatetime)`
+
+### 类型转换
+
+![类型转换函数](static/type-cast.png)
+
+### 数据排序
+
+在R中,可以使用`order()`函数对一个数据框进行排序。默认的排序顺序是升序。在排序变量的前边加一个减号即可得到降序的排序结果。
+
+### 数据集的合并
 
 
 
