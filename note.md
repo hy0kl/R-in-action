@@ -426,7 +426,35 @@ https://github.com/ggrothendieck/sqldf
 
 ## 第五章 高级数据管理
 
-###
+### 数学函数
+
+![数学函数](static/math-function.png)
+
+### 统计函数
+
+![统计函数](static/stat-function.png)
+
+### 概率函数
+
+在R中,概率函数形如: `[dpqr]distribution_abbreviation()`
+
+其中第一个字母表示其所指分布的某一方面:
+
+```
+  d = 密度函数(density)
+  p = 分布函数(distribution function)
+  q = 分位数函数(quantile function)
+  r = 生成随机数(随机偏差)
+```
+
+![概率分布](static/distribution.png)
+
+
+
+
+
+
+
 
 
 
