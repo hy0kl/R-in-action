@@ -449,15 +449,58 @@ https://github.com/ggrothendieck/sqldf
 
 ![概率分布](static/distribution.png)
 
+在每次生成伪随机数的时候,函数都会使用一个不同的种子,会产生不同的结果.可能通过函数`set.seed()`显式指定种子,让结果可以重现(reproducible).
 
+![字符串函数](static/string-function.png)
 
+![其他实用函数](static/othoer-function.png)
 
+R中提供了一个`apply()`函数,可将一个任意函数"应用"到矩阵、数组、数据框的任何维度上.apply函数的使用格式为:
 
+```
+apply(x, MARGIN, FUN, ...)
 
+其中,x为数据对象,MARGIN是维度的下标,FUN是指定的函数,...包括了任何想传递给FUN的参数.
+在矩阵或数据框中,MARGIN=1表示行,MARGIN=2表示列.
+lapply()和sapply()可将函数应用到列表(list)上.
+```
 
+### 控制流
 
+#### 重复和循环
 
+```
+for 结构
+    for (var in seq) statement
 
+while 结构
+    while (cond) statement
+```
+
+#### 条件执行
+
+```
+if-else 结构
+    if (cond) statement
+    if (cond) statement1 else statement2
+
+ifelse 结构
+    ifelse(cond, statement1, statement2)
+
+switch 结构
+    switch(expr, ...)
+```
+
+### 用户自编函数
+
+```
+myfunction <- function(arg1, arg2, ...) {
+    statements
+    return(object)
+}
+```
+
+### 整合和重构
 
 
 
